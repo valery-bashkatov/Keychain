@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Keychain  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+
+    <a title="Keychain  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Keychain Docs
+        </a>
+         (100% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Keychain Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Keychain  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Keychain.html">Keychain</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/KeychainError.html">KeychainError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <a href='#keychain' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='keychain'>Keychain</h1>
+
+<p><a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href=""><img src="https://img.shields.io/badge/platform-ios-lightgrey.svg" alt="Platform"></a></p>
+<a href='#description' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='description'>Description</h2>
+
+<p><code>Keychain</code> provides simple mechanism (like working with <code>NSUserDefaults</code>) for interactions with the keychain storage.</p>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+
+<ul>
+<li>iOS 8.0+</li>
+<li>Xcode 7.3+</li>
+</ul>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+
+<p>To integrate <code>Keychain</code> into your project using <a href="https://github.com/Carthage/Carthage">Carthage</a>, specify it in your <code>Keychain</code>:</p>
+<pre class="highlight plaintext"><code>github "valery-bashkatov/Keychain"
+</code></pre>
+
+<p>And then follow the <a href="https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos">instructions</a> to install the framework.</p>
+<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
+
+<p>API Reference is located at <a href="http://valery-bashkatov.github.io/Keychain">http://valery-bashkatov.github.io/Keychain</a>.</p>
+<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Keychain</span>
+
+<span class="k">try!</span> <span class="kt">Keychain</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="s">"Jack"</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"name"</span><span class="p">)</span>
+<span class="k">try!</span> <span class="kt">Keychain</span><span class="o">.</span><span class="nf">setValue</span><span class="p">([</span><span class="mi">3735565</span><span class="p">,</span> <span class="mi">2454548</span><span class="p">,</span> <span class="mi">964533</span><span class="p">],</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"phoneNumbers"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">Keychain</span><span class="o">.</span><span class="nf">getValue</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"name"</span><span class="p">)</span> <span class="k">as!</span> <span class="kt">String</span>
+<span class="k">let</span> <span class="nv">phoneNumbers</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">Keychain</span><span class="o">.</span><span class="nf">getValue</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"phoneNumbers"</span><span class="p">)</span> <span class="k">as!</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span>
+</code></pre>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2016 <a class="link" href="http://valery.bashkatov.org" target="_blank" rel="external">Valery Bashkatov</a>. All rights reserved. (Last updated: 2016-08-08)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

@@ -20,6 +20,9 @@ github "valery-bashkatov/Keychain"
 ```
 And then follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) to install the framework.
 
+## Documentation
+API Reference is located at [http://valery-bashkatov.github.io/Keychain](http://valery-bashkatov.github.io/Keychain).
+
 ## Usage
 
 ```swift

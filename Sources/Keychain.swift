@@ -90,12 +90,12 @@ public class Keychain {
     /**
      Saves the `SecKey` object to the keychain. Before saving, the old value is deleted, So, if you want to delete the item, just set its value to `nil`.
      
-     - parameter cryptoKey: The `SecKey` object that will be saved.
+     - parameter secKey: The `SecKey` object that will be saved.
      - parameter key: The key name for the `SecKey` item.
      
      - throws: The `KeychainError` if something's wrong.
      */
-    static public func setCryptoKey(cryptoKey: SecKey?, forKey key: String) throws {
+    static public func setSecKey(secKey: SecKey?, forKey key: String) throws {
         var attributes: [String: AnyObject] = [
             (kSecClass as String): kSecClassKey,
             (kSecAttrApplicationTag as String): key
@@ -107,12 +107,12 @@ public class Keychain {
             throw KeychainError(rawValue: Int(deletingStatus))!
         }
 
-        // If cryptoKey is nil, just delete the key
-        guard let cryptoKey = cryptoKey else {
+        // If secKey is nil, just delete the key
+        guard let secKey = secKey else {
             return
         }
         
-        attributes[kSecValueRef as String] = cryptoKey
+        attributes[kSecValueRef as String] = secKey
         
         let addingStatus = SecItemAdd(attributes, nil)
         
@@ -130,16 +130,16 @@ public class Keychain {
      
      - returns: The `SecKey` object.
      */
-    static public func getCryptoKey(forKey key: String) throws -> SecKey? {
+    static public func getSecKey(forKey key: String) throws -> SecKey? {
         let attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassKey,
             (kSecAttrApplicationTag as String): key,
             (kSecReturnRef as String): true
         ]
 
-        var cryptoKey: AnyObject?
+        var secKey: AnyObject?
         
-        let gettingStatus = SecItemCopyMatching(attributes, &cryptoKey)
+        let gettingStatus = SecItemCopyMatching(attributes, &secKey)
         
         guard gettingStatus != errSecItemNotFound else {
             return nil
@@ -149,6 +149,6 @@ public class Keychain {
             throw KeychainError(rawValue: Int(gettingStatus))!
         }
         
-        return cryptoKey as! SecKey?
+        return secKey as! SecKey?
     }
 }

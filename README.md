@@ -7,17 +7,24 @@
 `Keychain` provides simple mechanism (like working with `NSUserDefaults`) for interactions with the keychain storage.
 
 ## Requirements
-- iOS 8.0+
-- Xcode 7.3+
+- iOS 9.0+
+- Xcode 8.0+
 
 ## Installation
 ### Carthage
 
 To integrate `Keychain` into your project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Keychain`:
 
+**Swift 2.3:**
 ```
-github "valery-bashkatov/Keychain"
+github "valery-bashkatov/Keychain" ~> 1.5.1
 ```
+
+**Swift 3:**
+```
+github "valery-bashkatov/Keychain" ~> 2.0.0
+```
+
 And then follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) to install the framework.
 
 ## Documentation

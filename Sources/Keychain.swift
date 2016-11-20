@@ -10,32 +10,32 @@ import Foundation
 import Security
 
 /**
- The `Keychain` class makes it easy to work with items in the keychain.
+ The `Keychain` class makes it easy to work with items in the keychain storage.
  */
-public class Keychain {
+open class Keychain {
     
-    // MARK: Initialization 
+    // MARK: Initialization
     
     /// :nodoc:
-    private init() {}
+    fileprivate init() {}
     
     // MARK: - Getting and Setting Values
     
     /**
      Sets the value of the key. Before setting, the old value is removed. So if you want to delete the key, just set its value to `nil`.
      
-     - parameter value: The value for the key. `NSCoding` protocol is implemented by all of the Foundation and most of the UIKit types.
+     - parameter value: The value for the key. Value's type must conform `NSCoding` protocol. It is implemented by all of the Foundation and most of the UIKit types.
      - parameter key: The key for which to create a record in the keychain.
      
      - throws: The `KeychainError` if something went wrong.
      */
-    static public func setValue(value: NSCoding?, forKey key: String) throws {
+    static open func setValue(_ value: Any?, forKey key: String) throws {
         var attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassGenericPassword,
-            (kSecAttrAccount as String): key
+            (kSecAttrAccount as String): key as NSObject
         ]
         
-        let deletingStatus = SecItemDelete(attributes)
+        let deletingStatus = SecItemDelete(attributes as CFDictionary)
         
         guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
             throw KeychainError(rawValue: Int(deletingStatus))!
@@ -46,9 +46,9 @@ public class Keychain {
             return
         }
         
-        attributes[kSecValueData as String] = NSKeyedArchiver.archivedDataWithRootObject(value)
+        attributes[kSecValueData as String] = NSKeyedArchiver.archivedData(withRootObject: value) as NSObject?
         
-        let addingStatus = SecItemAdd(attributes, nil)
+        let addingStatus = SecItemAdd(attributes as CFDictionary, nil)
         
         guard addingStatus == errSecSuccess else {
             throw KeychainError(rawValue: Int(addingStatus))!
@@ -64,57 +64,57 @@ public class Keychain {
      
      - returns: The key value.
      */
-    static public func getValue(forKey key: String) throws -> AnyObject? {
+    static open func getValue(forKey key: String) throws -> Any? {
         let attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassGenericPassword,
-            (kSecReturnData as String): true,
+            (kSecReturnData as String): true as NSObject,
             (kSecMatchLimit as String): kSecMatchLimitOne,
-            (kSecAttrAccount as String): key
+            (kSecAttrAccount as String): key as NSObject
         ]
         
         var result: AnyObject?
         
-        let gettingStatus = SecItemCopyMatching(attributes, &result)
-
+        let gettingStatus = SecItemCopyMatching(attributes as CFDictionary, &result)
+        
         guard gettingStatus != errSecItemNotFound else {
             return nil
         }
-
+        
         guard gettingStatus == errSecSuccess else {
             throw KeychainError(rawValue: Int(gettingStatus))!
         }
         
-        return NSKeyedUnarchiver.unarchiveObjectWithData(result as! NSData)
+        return NSKeyedUnarchiver.unarchiveObject(with: result as! Data) as Any?
     }
     
     /**
      Saves the `SecKey` object to the keychain. Before saving, the old value is deleted, So, if you want to delete the item, just set its value to `nil`.
      
-     - parameter cryptoKey: The `SecKey` object that will be saved.
+     - parameter secKey: The `SecKey` object that will be saved.
      - parameter key: The key name for the `SecKey` item.
      
      - throws: The `KeychainError` if something's wrong.
      */
-    static public func setCryptoKey(cryptoKey: SecKey?, forKey key: String) throws {
+    static open func setSecKey(_ secKey: SecKey?, forKey key: String) throws {
         var attributes: [String: AnyObject] = [
             (kSecClass as String): kSecClassKey,
-            (kSecAttrApplicationTag as String): key
+            (kSecAttrApplicationTag as String): key as AnyObject
         ]
-
-        let deletingStatus = SecItemDelete(attributes)
+        
+        let deletingStatus = SecItemDelete(attributes as CFDictionary)
         
         guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
             throw KeychainError(rawValue: Int(deletingStatus))!
         }
-
-        // If cryptoKey is nil, just delete the key
-        guard let cryptoKey = cryptoKey else {
+        
+        // If secKey is nil, just delete the key
+        guard let secKey = secKey else {
             return
         }
         
-        attributes[kSecValueRef as String] = cryptoKey
+        attributes[kSecValueRef as String] = secKey
         
-        let addingStatus = SecItemAdd(attributes, nil)
+        let addingStatus = SecItemAdd(attributes as CFDictionary, nil)
         
         guard addingStatus == errSecSuccess else {
             throw KeychainError(rawValue: Int(addingStatus))!
@@ -130,16 +130,16 @@ public class Keychain {
      
      - returns: The `SecKey` object.
      */
-    static public func getCryptoKey(forKey key: String) throws -> SecKey? {
+    static open func getSecKey(forKey key: String) throws -> SecKey? {
         let attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassKey,
-            (kSecAttrApplicationTag as String): key,
-            (kSecReturnRef as String): true
+            (kSecAttrApplicationTag as String): key as NSObject,
+            (kSecReturnRef as String): true as NSObject
         ]
-
-        var cryptoKey: AnyObject?
         
-        let gettingStatus = SecItemCopyMatching(attributes, &cryptoKey)
+        var secKey: AnyObject?
+        
+        let gettingStatus = SecItemCopyMatching(attributes as CFDictionary, &secKey)
         
         guard gettingStatus != errSecItemNotFound else {
             return nil
@@ -149,6 +149,6 @@ public class Keychain {
             throw KeychainError(rawValue: Int(gettingStatus))!
         }
         
-        return cryptoKey as! SecKey?
+        return secKey as! SecKey?
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 /**
  The `KeychainError` is an enum that represents `Keychain`'s errors.
  */
-public enum KeychainError: Int, ErrorType, CustomStringConvertible {
+public enum KeychainError: Int, Error, CustomStringConvertible {
     
     /// Function or operation not implemented.
     case unimplementedFunction = -4

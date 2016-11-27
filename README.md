@@ -13,14 +13,14 @@
 ## Installation
 ### Carthage
 
-To integrate `Keychain` into your project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Keychain`:
+To integrate `Keychain` into your project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
-**Swift 2.3:**
+#### Swift 2.3
 ```
 github "valery-bashkatov/Keychain" ~> 1.5.1
 ```
 
-**Swift 3:**
+#### Swift 3
 ```
 github "valery-bashkatov/Keychain" ~> 2.0.0
 ```

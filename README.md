@@ -8,7 +8,6 @@
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8.0+
 
 ## Installation
 ### Carthage

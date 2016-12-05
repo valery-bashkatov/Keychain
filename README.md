@@ -1,25 +1,14 @@
 # Keychain
-
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)]()
-
-## Description
 `Keychain` provides simple mechanism (like working with `NSUserDefaults`) for interactions with the keychain storage.
 
 ## Requirements
 - iOS 9.0+
+- Swift 3.0+
 
 ## Installation
 ### Carthage
-
 To integrate `Keychain` into your project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
-#### Swift 2.3
-```
-github "valery-bashkatov/Keychain" ~> 1.5.1
-```
-
-#### Swift 3
 ```
 github "valery-bashkatov/Keychain" ~> 2.0.0
 ```
@@ -30,7 +19,6 @@ And then follow the [instructions](https://github.com/Carthage/Carthage#if-youre
 API Reference is located at [http://valery-bashkatov.github.io/Keychain](http://valery-bashkatov.github.io/Keychain).
 
 ## Usage
-
 ```swift
 import Keychain
 

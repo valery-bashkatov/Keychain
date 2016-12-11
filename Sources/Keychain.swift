@@ -95,7 +95,7 @@ open class Keychain {
      
      - throws: The `KeychainError` if something's wrong.
      */
-    static public func setSecKey(secKey: SecKey?, forKey key: String) throws {
+    static open func setSecKey(_ secKey: SecKey?, forKey key: String) throws {
         var attributes: [String: AnyObject] = [
             (kSecClass as String): kSecClassKey,
             (kSecAttrApplicationTag as String): key as AnyObject
@@ -106,7 +106,7 @@ open class Keychain {
         guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
             throw KeychainError(rawValue: Int(deletingStatus))!
         }
-
+        
         // If secKey is nil, just delete the key
         guard let secKey = secKey else {
             return
@@ -130,16 +130,16 @@ open class Keychain {
      
      - returns: The `SecKey` object.
      */
-    static public func getSecKey(forKey key: String) throws -> SecKey? {
+    static open func getSecKey(forKey key: String) throws -> SecKey? {
         let attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassKey,
             (kSecAttrApplicationTag as String): key as NSObject,
             (kSecReturnRef as String): true as NSObject
         ]
-
+        
         var secKey: AnyObject?
         
-        let gettingStatus = SecItemCopyMatching(attributes, &secKey)
+        let gettingStatus = SecItemCopyMatching(attributes as CFDictionary, &secKey)
         
         guard gettingStatus != errSecItemNotFound else {
             return nil

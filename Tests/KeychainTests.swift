@@ -118,4 +118,83 @@ class KeychainTests: XCTestCase {
         XCTAssertNotNil(value)
         XCTAssertEqual(value!, expectedValue)
     }
+    
+    func testSecKey() {
+        var expectedPublicKey: SecKey?
+        var expectedPrivateKey: SecKey?
+        var publicKey: SecKey?
+        var privateKey: SecKey?
+        
+        let parameters = [
+            (kSecAttrKeyType as String): kSecAttrKeyTypeRSA,
+            (kSecAttrKeySizeInBits as String): 2048
+            ] as CFDictionary
+        
+        let status = SecKeyGeneratePair(parameters, &expectedPublicKey, &expectedPrivateKey)
+        
+        if status != errSecSuccess {
+            XCTFail("SecKeys generation failed: \(KeychainError(rawValue: Int(status)) ?? KeychainError.unknown)")
+        }
+
+        XCTAssertNotNil(expectedPublicKey)
+        XCTAssertNotNil(expectedPrivateKey)
+        
+        // Public key
+        
+        do {
+            try Keychain.setSecKey(expectedPublicKey, forKey: key)
+        } catch {
+            XCTFail("setSecKey failed: \(error)")
+        }
+        
+        do {
+            publicKey = try Keychain.getSecKey(forKey: key)
+        } catch {
+            XCTFail("getSecKey failed: \(error)")
+        }
+        
+        let expectedModulus = "\(expectedPublicKey)"
+            .components(separatedBy: ", ")
+            .filter {$0.hasPrefix("modulus: ")}
+        
+        let modulus = "\(publicKey)"
+            .components(separatedBy: ", ")
+            .filter {$0.hasPrefix("modulus: ")}
+        
+        XCTAssertEqual(modulus, expectedModulus)
+        
+        // Private key
+        
+        do {
+            try Keychain.setSecKey(expectedPrivateKey, forKey: key)
+        } catch {
+            XCTFail("setSecKey failed: \(error)")
+        }
+        
+        do {
+            privateKey = try Keychain.getSecKey(forKey: key)
+        } catch {
+            XCTFail("getSecKey failed: \(error)")
+        }
+        
+        let expectedKeyType = "\(expectedPrivateKey)"
+            .components(separatedBy: ", ")
+            .filter {$0.hasPrefix("key type: ")}
+        
+        let expectedKeySize = "\(expectedPrivateKey)"
+            .components(separatedBy: ", ")
+            .filter {$0.hasPrefix("block size: ")}
+        
+        
+        let keyType = "\(privateKey)"
+            .components(separatedBy: ", ")
+            .filter {$0.hasPrefix("key type: ")}
+        
+        let keySize = "\(privateKey)"
+            .components(separatedBy: ", ")
+            .filter {$0.hasPrefix("block size: ")}
+        
+        XCTAssertEqual(keyType, expectedKeyType)
+        XCTAssertEqual(keySize, expectedKeySize)
+    }
 }

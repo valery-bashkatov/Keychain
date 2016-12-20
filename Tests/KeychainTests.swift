@@ -119,7 +119,7 @@ class KeychainTests: XCTestCase {
         XCTAssertEqual(value!, expectedValue)
     }
     
-    func testSecKey() {
+    func testRSASecKeys() {
         var expectedPublicKey: SecKey?
         var expectedPrivateKey: SecKey?
         var publicKey: SecKey?

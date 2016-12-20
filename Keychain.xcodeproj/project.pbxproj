@@ -44,6 +44,7 @@
 		83B2B0A01D576AA50047E476 /* KeychainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeychainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B2B0A21D576AA50047E476 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		83B2B0A41D576AA50047E476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83B46F2C1E093422003DB590 /* KeychainTestsHostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = KeychainTestsHostApp.entitlements; path = ../../KeychainTestsHostApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 				838A73F71E087D4E009DC3DE /* Info.plist */,
 				838A73EB1E087D4E009DC3DE /* AppDelegate.swift */,
 				838A73EF1E087D4E009DC3DE /* Main.storyboard */,
+				83B46F2C1E093422003DB590 /* KeychainTestsHostApp.entitlements */,
 			);
 			path = KeychainTestsHostApp;
 			sourceTree = "<group>";
@@ -200,7 +202,13 @@
 				TargetAttributes = {
 					838A73E81E087D4E009DC3DE = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = R72PP6W753;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					83B2B08C1D5767320047E476 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -316,6 +324,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = KeychainTestsHostApp.entitlements;
+				DEVELOPMENT_TEAM = R72PP6W753;
 				INFOPLIST_FILE = Tests/KeychainTestsHostApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -330,6 +340,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = KeychainTestsHostApp.entitlements;
+				DEVELOPMENT_TEAM = R72PP6W753;
 				INFOPLIST_FILE = Tests/KeychainTestsHostApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

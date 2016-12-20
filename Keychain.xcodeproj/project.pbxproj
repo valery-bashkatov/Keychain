@@ -324,7 +324,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_ENTITLEMENTS = KeychainTestsHostApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Tests/KeychainTestsHostApp/KeychainTestsHostApp.entitlements;
 				DEVELOPMENT_TEAM = R72PP6W753;
 				INFOPLIST_FILE = Tests/KeychainTestsHostApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -340,7 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_ENTITLEMENTS = KeychainTestsHostApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Tests/KeychainTestsHostApp/KeychainTestsHostApp.entitlements;
 				DEVELOPMENT_TEAM = R72PP6W753;
 				INFOPLIST_FILE = Tests/KeychainTestsHostApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -38,7 +38,7 @@ open class Keychain {
         let deletingStatus = SecItemDelete(attributes as CFDictionary)
         
         guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
-            throw KeychainError(rawValue: Int(deletingStatus))!
+            throw (KeychainError(rawValue: Int(deletingStatus)) ?? KeychainError.unknown)
         }
         
         // If value is nil, we need just delete the key
@@ -51,7 +51,7 @@ open class Keychain {
         let addingStatus = SecItemAdd(attributes as CFDictionary, nil)
         
         guard addingStatus == errSecSuccess else {
-            throw KeychainError(rawValue: Int(addingStatus))!
+            throw (KeychainError(rawValue: Int(addingStatus)) ?? KeychainError.unknown)
         }
     }
     
@@ -81,7 +81,7 @@ open class Keychain {
         }
         
         guard gettingStatus == errSecSuccess else {
-            throw KeychainError(rawValue: Int(gettingStatus))!
+            throw (KeychainError(rawValue: Int(gettingStatus)) ?? KeychainError.unknown)
         }
         
         return NSKeyedUnarchiver.unarchiveObject(with: result as! Data) as Any?
@@ -104,7 +104,7 @@ open class Keychain {
         let deletingStatus = SecItemDelete(attributes as CFDictionary)
         
         guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
-            throw KeychainError(rawValue: Int(deletingStatus))!
+            throw (KeychainError(rawValue: Int(deletingStatus)) ?? KeychainError.unknown)
         }
         
         // If secKey is nil, just delete the key
@@ -117,7 +117,7 @@ open class Keychain {
         let addingStatus = SecItemAdd(attributes as CFDictionary, nil)
         
         guard addingStatus == errSecSuccess else {
-            throw KeychainError(rawValue: Int(addingStatus))!
+            throw (KeychainError(rawValue: Int(addingStatus)) ?? KeychainError.unknown)
         }
     }
     
@@ -146,7 +146,7 @@ open class Keychain {
         }
         
         guard gettingStatus == errSecSuccess else {
-            throw KeychainError(rawValue: Int(gettingStatus))!
+            throw (KeychainError(rawValue: Int(gettingStatus)) ?? KeychainError.unknown)
         }
         
         return secKey as! SecKey?

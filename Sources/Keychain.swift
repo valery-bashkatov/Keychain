@@ -39,7 +39,7 @@ open class Keychain {
             
         status = SecItemDelete(attributes as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else {
-            throw KeychainError(code: Int(status))
+            throw KeychainError(code: status)
         }
         
         // If value is nil, we need just delete the key
@@ -51,7 +51,7 @@ open class Keychain {
         
         status = SecItemAdd(attributes as CFDictionary, nil)
         guard status == errSecSuccess else {
-            throw KeychainError(code: Int(status))
+            throw KeychainError(code: status)
         }
     }
     
@@ -81,7 +81,7 @@ open class Keychain {
         }
         
         guard status == errSecSuccess else {
-            throw KeychainError(code: Int(status))
+            throw KeychainError(code: status)
         }
         
         return NSKeyedUnarchiver.unarchiveObject(with: result as! Data) as Any?
@@ -105,7 +105,7 @@ open class Keychain {
         
         status = SecItemDelete(attributes as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else {
-            throw KeychainError(code: Int(status))
+            throw KeychainError(code: status)
         }
         
         // If secKey is nil, just delete the key
@@ -117,7 +117,7 @@ open class Keychain {
         
         status = SecItemAdd(attributes as CFDictionary, nil)
         guard status == errSecSuccess else {
-            throw KeychainError(code: Int(status))
+            throw KeychainError(code: status)
         }
     }
     
@@ -146,7 +146,7 @@ open class Keychain {
         }
         
         guard status == errSecSuccess else {
-            throw KeychainError(code: Int(status))
+            throw KeychainError(code: status)
         }
         
         return secKey as! SecKey?

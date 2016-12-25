@@ -17,19 +17,19 @@ public struct KeychainError: Error, CustomStringConvertible {
     
     /// The error codes descriptions.
     private static let descriptions = [
-        -4: "The function or operation is not implemented",
-        -50: "One or more parameters passed to a function were not valid",
-        -108: "Failed to allocate memory",
-        -25291: "No keychain is available",
-        -25299: "An item with the same primary key attributes already exists",
-        -25300: "The item cannot be found",
-        -25308: "Interaction with the Security Server is not allowed",
-        -26275: "Unable to decode the provided data",
-        -34018: "Internal error when a required entitlement isn't present. Keychain entitlement required"
+        errSecUnimplemented: "The function or operation is not implemented",
+        errSecParam: "One or more parameters passed to a function were not valid",
+        errSecAllocate: "Failed to allocate memory",
+        errSecNotAvailable: "No keychain is available",
+        errSecDuplicateItem: "An item with the same primary key attributes already exists",
+        errSecItemNotFound: "The item cannot be found",
+        errSecInteractionNotAllowed: "Interaction with the Security Server is not allowed",
+        errSecDecode: "Unable to decode the provided data",
+        /*errSecMissingEntitlement*/ -34018: "Internal error when a required entitlement isn't present. Keychain entitlement required"
     ]
     
     /// The error code.
-    public let code: Int
+    public let code: OSStatus
     
     /// The description.
     public var description: String {
@@ -45,7 +45,7 @@ public struct KeychainError: Error, CustomStringConvertible {
      
      - returns: An `KeychainError`.
      */
-    init(code: Int) {
+    init(code: OSStatus) {
         self.code = code
     }
 }

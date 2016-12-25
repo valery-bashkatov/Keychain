@@ -9,61 +9,47 @@
 import Foundation
 
 /**
- The `KeychainError` is an enum that represents `Keychain`'s errors.
+ The `KeychainError` represents `Keychain`'s errors.
  */
-public enum KeychainError: Int, Error, CustomStringConvertible {
+public struct KeychainError: Error, CustomStringConvertible {
     
-    /// Function or operation not implemented.
-    case unimplementedFunction = -4
+    // MARK: - Properties
     
-    /// One or more parameters passed to the function were not valid.
-    case invalidParameter = -50
+    /// The error code.
+    public let code: Int
     
-    /// Failed to allocate memory.
-    case memoryAllocationFailed = -108
+    /// The localized description.
+    public var localizedDescription: String {
+        let descriptions = [
+            -4: "The function or operation is not implemented",
+            -50: "One or more parameters passed to a function were not valid",
+            -108: "Failed to allocate memory",
+            -25291: "No keychain is available",
+            -25299: "An item with the same primary key attributes already exists",
+            -25300: "The item cannot be found",
+            -25308: "Interaction with the Security Server is not allowed",
+            -26275: "Unable to decode the provided data",
+            -34018: "Internal error when a required entitlement isn't present. Keychain entitlement required"
+        ]
+        
+        return descriptions[code] ?? "Unknown error (\(code))"
+    }
     
-    /// No keychain is available.
-    case keychainUnavailable = -25291
-    
-    /// Authorization/Authentication failed.
-    case authFailed = -25293
-    
-    /// The item already exists.
-    case duplicateKey = -25299
-    
-    /// The item cannot be found.
-    case keyNotFound = -25300
-    
-    /// Interaction with the Security Server is not allowed.
-    case interactionNotAllowed = -25308
-    
-    /// Unable to decode the provided data.
-    case dataDecodeError = -26275
-    
-    /// Internal error when a required entitlement isn't present. Keychain entitlement required.
-    case missingEntitlement = -34018
-    
-    /// Unknown error.
-    case unknown = 0
-    
-    /// Text description of the error.
+    /// The description.
     public var description: String {
-        let text: String
-        
-        switch self {
-        case .unimplementedFunction: text = "Function or operation not implemented"
-        case .invalidParameter: text = "One or more parameters passed to the function were not valid"
-        case .memoryAllocationFailed: text = "Failed to allocate memory"
-        case .keychainUnavailable: text = "No keychain is available"
-        case .duplicateKey: text = "The item already exists"
-        case .keyNotFound: text = "The item cannot be found"
-        case .interactionNotAllowed: text = "Interaction with the Security Server is not allowed"
-        case .dataDecodeError: text = "Unable to decode the provided data"
-        case .authFailed: text = "Authorization/Authentication failed"
-        case .missingEntitlement: text = "Internal error when a required entitlement isn't present. Keychain entitlement required"
-        case .unknown: text = "Unknown error"
-        }
-        
-        return "KeychainError (\(self.rawValue)): \(text)."
+        return localizedDescription
+    }
+    
+    // MARK: - Initialization
+    
+    /**
+     Initializes `KeychainError` instance.
+     
+     - parameter code: A system code of an error.
+     
+     - returns: An `KeychainError`.
+     */
+    init(code: Int) {
+        self.code = code
     }
 }

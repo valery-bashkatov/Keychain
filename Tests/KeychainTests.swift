@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Keychain
+@testable import Keychain
 
 class KeychainTests: XCTestCase {
     
@@ -133,7 +133,7 @@ class KeychainTests: XCTestCase {
         let status = SecKeyGeneratePair(parameters, &expectedPublicKey, &expectedPrivateKey)
         
         if status != errSecSuccess {
-            XCTFail("SecKeys generation failed: \(KeychainError(rawValue: Int(status)) ?? KeychainError.unknown)")
+            XCTFail("SecKeys generation failed: \(KeychainError(code: Int(status)))")
         }
 
         XCTAssertNotNil(expectedPublicKey)

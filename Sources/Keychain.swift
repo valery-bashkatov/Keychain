@@ -35,10 +35,11 @@ open class Keychain {
             (kSecAttrAccount as String): key as NSObject
         ]
         
-        let deletingStatus = SecItemDelete(attributes as CFDictionary)
-        
-        guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
-            throw (KeychainError(rawValue: Int(deletingStatus)) ?? KeychainError.unknown)
+        var status: OSStatus
+            
+        status = SecItemDelete(attributes as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else {
+            throw KeychainError(code: Int(status))
         }
         
         // If value is nil, we need just delete the key
@@ -48,10 +49,9 @@ open class Keychain {
         
         attributes[kSecValueData as String] = NSKeyedArchiver.archivedData(withRootObject: value) as NSObject?
         
-        let addingStatus = SecItemAdd(attributes as CFDictionary, nil)
-        
-        guard addingStatus == errSecSuccess else {
-            throw (KeychainError(rawValue: Int(addingStatus)) ?? KeychainError.unknown)
+        status = SecItemAdd(attributes as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw KeychainError(code: Int(status))
         }
     }
     
@@ -73,15 +73,15 @@ open class Keychain {
         ]
         
         var result: AnyObject?
+        var status: OSStatus
         
-        let gettingStatus = SecItemCopyMatching(attributes as CFDictionary, &result)
-        
-        guard gettingStatus != errSecItemNotFound else {
+        status = SecItemCopyMatching(attributes as CFDictionary, &result)
+        guard status != errSecItemNotFound else {
             return nil
         }
         
-        guard gettingStatus == errSecSuccess else {
-            throw (KeychainError(rawValue: Int(gettingStatus)) ?? KeychainError.unknown)
+        guard status == errSecSuccess else {
+            throw KeychainError(code: Int(status))
         }
         
         return NSKeyedUnarchiver.unarchiveObject(with: result as! Data) as Any?
@@ -101,10 +101,11 @@ open class Keychain {
             (kSecAttrApplicationTag as String): key as AnyObject
         ]
         
-        let deletingStatus = SecItemDelete(attributes as CFDictionary)
+        var status: OSStatus
         
-        guard deletingStatus == errSecSuccess || deletingStatus == errSecItemNotFound else {
-            throw (KeychainError(rawValue: Int(deletingStatus)) ?? KeychainError.unknown)
+        status = SecItemDelete(attributes as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else {
+            throw KeychainError(code: Int(status))
         }
         
         // If secKey is nil, just delete the key
@@ -114,10 +115,9 @@ open class Keychain {
         
         attributes[kSecValueRef as String] = secKey
         
-        let addingStatus = SecItemAdd(attributes as CFDictionary, nil)
-        
-        guard addingStatus == errSecSuccess else {
-            throw (KeychainError(rawValue: Int(addingStatus)) ?? KeychainError.unknown)
+        status = SecItemAdd(attributes as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw KeychainError(code: Int(status))
         }
     }
     
@@ -138,15 +138,15 @@ open class Keychain {
         ]
         
         var secKey: AnyObject?
-        
-        let gettingStatus = SecItemCopyMatching(attributes as CFDictionary, &secKey)
-        
-        guard gettingStatus != errSecItemNotFound else {
+        var status: OSStatus
+            
+        status = SecItemCopyMatching(attributes as CFDictionary, &secKey)
+        guard status != errSecItemNotFound else {
             return nil
         }
         
-        guard gettingStatus == errSecSuccess else {
-            throw (KeychainError(rawValue: Int(gettingStatus)) ?? KeychainError.unknown)
+        guard status == errSecSuccess else {
+            throw KeychainError(code: Int(status))
         }
         
         return secKey as! SecKey?

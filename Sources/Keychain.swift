@@ -12,12 +12,12 @@ import Security
 /**
  The `Keychain` class makes it easy to work with items in the keychain storage.
  */
-open class Keychain {
+public class Keychain {
     
     // MARK: Initialization
     
     /// :nodoc:
-    fileprivate init() {}
+    private init() {}
     
     // MARK: - Getting and Setting Values
     
@@ -29,7 +29,7 @@ open class Keychain {
      
      - throws: The `KeychainError` if something went wrong.
      */
-    static open func setValue(_ value: Any?, forKey key: String) throws {
+    static public func setValue(_ value: Any?, forKey key: String) throws {
         var attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassGenericPassword,
             (kSecAttrAccount as String): key as NSObject
@@ -64,7 +64,7 @@ open class Keychain {
      
      - returns: The key value.
      */
-    static open func getValue(forKey key: String) throws -> Any? {
+    static public func getValue(forKey key: String) throws -> Any? {
         let attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassGenericPassword,
             (kSecReturnData as String): true as NSObject,
@@ -95,7 +95,7 @@ open class Keychain {
      
      - throws: The `KeychainError` if something's wrong.
      */
-    static open func setSecKey(_ secKey: SecKey?, forKey key: String) throws {
+    static public func setSecKey(_ secKey: SecKey?, forKey key: String) throws {
         var attributes: [String: AnyObject] = [
             (kSecClass as String): kSecClassKey,
             (kSecAttrApplicationTag as String): key as AnyObject
@@ -130,7 +130,7 @@ open class Keychain {
      
      - returns: The `SecKey` object.
      */
-    static open func getSecKey(forKey key: String) throws -> SecKey? {
+    static public func getSecKey(forKey key: String) throws -> SecKey? {
         let attributes: [String: NSObject] = [
             (kSecClass as String): kSecClassKey,
             (kSecAttrApplicationTag as String): key as NSObject,

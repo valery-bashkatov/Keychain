@@ -35,17 +35,4 @@ public struct KeychainError: Error, CustomStringConvertible {
     public var description: String {
         return KeychainError.descriptions[code] ?? "Unknown error (\(code))"
     }
-    
-    // MARK: - Initialization
-    
-    /**
-     Initializes `KeychainError` instance.
-     
-     - parameter code: A system code of an error.
-     
-     - returns: An `KeychainError`.
-     */
-    init(code: Int) {
-        self.code = code
-    }
 }

@@ -133,7 +133,7 @@ class KeychainTests: XCTestCase {
         let status = SecKeyGeneratePair(parameters, &expectedPublicKey, &expectedPrivateKey)
         
         if status != errSecSuccess {
-            XCTFail("SecKeys generation failed: \(KeychainError(code: status))")
+            XCTFail("SecKeys generation failed: \(KeychainError(code: Int(status)))")
         }
 
         XCTAssertNotNil(expectedPublicKey)

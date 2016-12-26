@@ -16,7 +16,7 @@ public struct KeychainError: Error, CustomStringConvertible {
     // MARK: - Properties
     
     /// The error codes descriptions.
-    private static let descriptions = [
+    static private let descriptions = [
         Int(errSecUnimplemented): "The function or operation is not implemented",
         Int(errSecParam): "One or more parameters passed to a function were not valid",
         Int(errSecAllocate): "Failed to allocate memory",

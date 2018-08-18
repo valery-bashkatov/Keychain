@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -21,6 +24,12 @@
           Keychain Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -50,7 +59,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/KeychainError.html">KeychainError</a>
@@ -66,7 +75,7 @@
             <h1>Keychain</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Keychain</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Keychain</span></code></pre>
 
                 </div>
               </div>
@@ -89,9 +98,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8Keychain8Keychain8setValueFzTGSqP__6forKeySS_T_"></a>
+                    <a name="/s:8KeychainAAC8setValueyypSg_SS6forKeytKFZ"></a>
                     <a name="//apple_ref/swift/Method/setValue(_:forKey:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8Keychain8Keychain8setValueFzTGSqP__6forKeySS_T_">setValue(_:forKey:)</a>
+                    <a class="token" href="#/s:8KeychainAAC8setValueyypSg_SS6forKeytKFZ">setValue(_:forKey:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -100,7 +109,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Sets the value of the key. Before setting, the old value is removed. So if you want to delete the key, just set its value to <code>nil</code>.</p>
-
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     <p>The <code><a href="../Structs/KeychainError.html">KeychainError</a></code> if something went wrong.</p>
@@ -112,7 +120,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -128,8 +136,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The value for the key. Value’s type must conform <code>NSCoding</code> protocol. It is implemented by all of the Foundation and most of the UIKit types.</p>
-
+                                  <p>The value for the key. Value&rsquo;s type must conform <code>NSCoding</code> protocol. It is implemented by all of the Foundation and most of the UIKit types.</p>
                                 </div>
                               </td>
                             </tr>
@@ -142,7 +149,6 @@
                               <td>
                                 <div>
                                   <p>The key for which to create a record in the keychain.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -155,9 +161,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8Keychain8Keychain8getValueFzT6forKeySS_GSqP__"></a>
+                    <a name="/s:8KeychainAAC8getValueypSgSS6forKey_tKFZ"></a>
                     <a name="//apple_ref/swift/Method/getValue(forKey:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8Keychain8Keychain8getValueFzT6forKeySS_GSqP__">getValue(forKey:)</a>
+                    <a class="token" href="#/s:8KeychainAAC8getValueypSgSS6forKey_tKFZ">getValue(forKey:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -166,7 +172,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the value of the key or <code>nil</code>, if the key does not exist.</p>
-
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     <p>The <code><a href="../Structs/KeychainError.html">KeychainError</a></code> if something went wrong.</p>
@@ -178,7 +183,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">getValue</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getValue</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -195,7 +200,6 @@
                               <td>
                                 <div>
                                   <p>The key for which to get the value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -205,7 +209,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>The key value.</p>
-
                       </div>
                     </section>
                   </div>
@@ -213,9 +216,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8Keychain8Keychain9setSecKeyFzTGSqCSo6SecKey_6forKeySS_T_"></a>
+                    <a name="/s:8KeychainAAC9setSecKeyySo0cD0CSg_SS03forD0tKFZ"></a>
                     <a name="//apple_ref/swift/Method/setSecKey(_:forKey:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8Keychain8Keychain9setSecKeyFzTGSqCSo6SecKey_6forKeySS_T_">setSecKey(_:forKey:)</a>
+                    <a class="token" href="#/s:8KeychainAAC9setSecKeyySo0cD0CSg_SS03forD0tKFZ">setSecKey(_:forKey:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -224,7 +227,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Saves the <code>SecKey</code> object to the keychain. Before saving, the old value is deleted, So, if you want to delete the item, just set its value to <code>nil</code>.</p>
-
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     <p>The <code><a href="../Structs/KeychainError.html">KeychainError</a></code> if something&rsquo;s wrong.</p>
@@ -236,7 +238,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">setSecKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">secKey</span><span class="p">:</span> <span class="kt">SecKey</span><span class="p">?,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">setSecKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">secKey</span><span class="p">:</span> <span class="kt">SecKey</span><span class="p">?,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -253,7 +255,6 @@
                               <td>
                                 <div>
                                   <p>The <code>SecKey</code> object that will be saved.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -266,7 +267,6 @@
                               <td>
                                 <div>
                                   <p>The key name for the <code>SecKey</code> item.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -279,9 +279,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8Keychain8Keychain9getSecKeyFzT6forKeySS_GSqCSo6SecKey_"></a>
+                    <a name="/s:8KeychainAAC9getSecKeySo0cD0CSgSS03forD0_tKFZ"></a>
                     <a name="//apple_ref/swift/Method/getSecKey(forKey:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8Keychain8Keychain9getSecKeyFzT6forKeySS_GSqCSo6SecKey_">getSecKey(forKey:)</a>
+                    <a class="token" href="#/s:8KeychainAAC9getSecKeySo0cD0CSgSS03forD0_tKFZ">getSecKey(forKey:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -290,7 +290,6 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the <code>SecKey</code> object associated with the key or <code>nil</code>, if the key does not exist.</p>
-
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     <p>The <code><a href="../Structs/KeychainError.html">KeychainError</a></code> if something&rsquo;s wrong.</p>
@@ -302,7 +301,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">getSecKey</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">SecKey</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getSecKey</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">SecKey</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -319,7 +318,6 @@
                               <td>
                                 <div>
                                   <p>The key for which to get the <code>SecKey</code>.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -329,7 +327,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>The <code>SecKey</code> object.</p>
-
                       </div>
                     </section>
                   </div>
@@ -342,8 +339,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="http://valery.bashkatov.org" target="_blank" rel="external">Valery Bashkatov</a>. All rights reserved. (Last updated: 2017-01-02)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="http://valery.bashkatov.org" target="_blank" rel="external">Valery Bashkatov</a>. All rights reserved. (Last updated: 2018-08-18)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

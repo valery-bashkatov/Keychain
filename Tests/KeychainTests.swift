@@ -153,11 +153,11 @@ class KeychainTests: XCTestCase {
             XCTFail("getSecKey failed: \(error)")
         }
         
-        let expectedModulus = "\(expectedPublicKey)"
+        let expectedModulus = "\(String(describing: expectedPublicKey))"
             .components(separatedBy: ", ")
             .filter {$0.hasPrefix("modulus: ")}
         
-        let modulus = "\(publicKey)"
+        let modulus = "\(String(describing: publicKey))"
             .components(separatedBy: ", ")
             .filter {$0.hasPrefix("modulus: ")}
         
@@ -177,20 +177,20 @@ class KeychainTests: XCTestCase {
             XCTFail("getSecKey failed: \(error)")
         }
         
-        let expectedKeyType = "\(expectedPrivateKey)"
+        let expectedKeyType = "\(String(describing: expectedPrivateKey))"
             .components(separatedBy: ", ")
             .filter {$0.hasPrefix("key type: ")}
         
-        let expectedKeySize = "\(expectedPrivateKey)"
+        let expectedKeySize = "\(String(describing: expectedPrivateKey))"
             .components(separatedBy: ", ")
             .filter {$0.hasPrefix("block size: ")}
         
         
-        let keyType = "\(privateKey)"
+        let keyType = "\(String(describing: privateKey))"
             .components(separatedBy: ", ")
             .filter {$0.hasPrefix("key type: ")}
         
-        let keySize = "\(privateKey)"
+        let keySize = "\(String(describing: privateKey))"
             .components(separatedBy: ", ")
             .filter {$0.hasPrefix("block size: ")}
         
